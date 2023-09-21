@@ -1,0 +1,8 @@
+.new-user-form button{
+    height:50px;
+}
+
+mat-error{
+    font-size:12px;
+    text-align: justify;
+}

@@ -1,0 +1,24 @@
+.login-select-container{
+    display:flex;
+    width:100%;
+    height:100%;
+    align-items: center;
+}
+.login-select{
+    width:400px;
+    margin:auto;
+}
+.login-select h3{
+    text-align: center;
+}
+
+.login-select button{
+    width:180px;
+    height:180px;
+    margin:10px;
+}
+.login-select button img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}

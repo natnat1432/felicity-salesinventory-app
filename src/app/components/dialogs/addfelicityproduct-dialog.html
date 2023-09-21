@@ -1,0 +1,68 @@
+
+
+  <h1 mat-dialog-title>Add Product</h1>
+  <div class="add-felicity-product">
+  <div class="input">
+    <form [formGroup]="addFelicityProductForm">
+  <div mat-dialog-content>
+  
+
+      <mat-form-field>
+        <mat-label>Item Type</mat-label>
+        <mat-select formControlName="item_type" (selectionChange)="onItemTypeChange()">
+          <mat-option *ngFor="let each of item_type" [value]="each.value">{{each.name}}</mat-option>
+        </mat-select>
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Item Name</mat-label>
+        <input type="text" matInput placeholder="" formControlName="item_name">
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Item Category</mat-label>
+        <mat-select formControlName="item_category">
+
+          <mat-option selected *ngIf="addFelicityProductForm.value.item_type == 'P' || 
+                            addFelicityProductForm.value.item_type == 'C' || 
+                            addFelicityProductForm.value.item_type == 'B' || 
+                            addFelicityProductForm.value.item_type ==  'S' " value="Meat">Meat</mat-option>
+          <mat-option selected value="Produce" *ngIf="addFelicityProductForm.value.item_type == 'V' || 
+                                      addFelicityProductForm.value.item_type == 'F' "
+                                      >Produce</mat-option>
+
+          <div *ngIf="addFelicityProductForm.value.item_type == 'I'">
+            <mat-option *ngFor="let each of industrial" [value]="each">{{each}}</mat-option>
+          </div>
+          
+
+        </mat-select>
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Item Brand</mat-label>
+        <input type="text" matInput placeholder="" formControlName="item_brand">
+      </mat-form-field> <br>
+      <div class="flex">
+      <mat-form-field>
+        <mat-label>Packaging Unit</mat-label>
+        <mat-select formControlName="item_packaging_unit">
+          <mat-option [value]="each" *ngFor="let each of packaging_unit">{{each}}</mat-option>
+        </mat-select>
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Quantity Per Unit</mat-label>
+        <input type="number" matInput placeholder="" formControlName="item_quantity_per_unit">
+      </mat-form-field>
+    </div> <br>
+      <mat-form-field>
+        <mat-label>Unit of Measure</mat-label>
+        <mat-select formControlName="item_unit_measure">
+          <mat-option [value]="each.value" *ngFor="let each of unit_measure">{{each.name}}</mat-option>
+        </mat-select>
+      </mat-form-field> <br>
+    </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="addFelicityProductForm" [disabled]="!addFelicityProductForm.valid">Add</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  </div>
+</form>
+</div>
+</div>

@@ -1,0 +1,114 @@
+<mat-drawer-container class="example-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="side" [opened]="toggleState">
+    <div class="sidebar-container">
+      <div class="sidebar-image-container">
+        <img src="../../../assets/images/felicity-vertical-logo.png" alt="Felicity logo" *ngIf="view == 'felicity'"
+          draggable="false">
+        <img src="../../../assets/images/suleat.svg" *ngIf="view == 'suleat'" alt="Suleat logo" draggable="false">
+      </div>
+      <br><br>
+      <div class="headings">
+        <h4>Main Menu</h4>
+      </div>
+      <div [class]="(page == 'Felicity Sales Admin')?'felicity-tab selected':'felicity-tab'" *ngIf="tabs && tabs.includes('sales_admin') && view == 'felicity'"
+        (click)="navigateFelicitySalesAdmin()">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <h4>Sales Admin</h4>
+      </div>
+      <div [class]="(page == 'Felicity Production Admin')?'felicity-tab selected':'felicity-tab'"
+        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'felicity'" (click)="navigateFelicityProductionAdmin()">
+        <mat-icon>storage</mat-icon>
+        <h4>Production Admin</h4>
+      </div>
+      <div [class]="(page == 'Felicity Delivery Admin')?'felicity-tab selected':'felicity-tab'"
+        *ngIf="tabs &&  tabs.includes('delivery_admin') &&  view == 'felicity'" (click)="navigateFelicityDeliveryAdmin()">
+        <mat-icon> local_shipping</mat-icon>
+        <h4>Delivery Admin</h4>
+      </div>
+      <div [class]="(page == 'Felicity Order Analytics')?'felicity-tab selected':'felicity-tab'"
+        *ngIf="tabs &&  tabs.includes('order_analytics') && view == 'felicity'" (click)="navigateFelicityOrderAnalytics()">
+        <mat-icon>assessment</mat-icon>
+        <h4>Order Analytics</h4>
+      </div>
+
+      <div [class]="(page == 'Suleat Sales Admin')?'suleat-tab selected-suleat':'suleat-tab'" *ngIf="tabs && tabs.includes('sales_admin') && view == 'suleat'"
+        (click)="navigateSuleatSalesAdmin()">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <h4>Sales Admin</h4>
+      </div>
+      <div [class]="(page == 'Suleat Production Admin')?'suleat-tab selected-suleat':'suleat-tab'"
+        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'suleat'" (click)="navigateSuleatProductionAdmin()">
+        <mat-icon>style</mat-icon>
+        <h4>Production Admin</h4>
+      </div>
+      <div [class]="(page == 'Suleat Delivery Admin')?'suleat-tab selected-suleat':'suleat-tab'"
+        *ngIf="tabs &&  tabs.includes('delivery_admin') &&  view == 'suleat'" (click)="navigateSuleatDeliveryAdmin()">
+        <mat-icon> local_shipping</mat-icon>
+        <h4>Delivery Admin</h4>
+      </div>
+      <div [class]="(page == 'Suleat Order Analytics')?'suleat-tab selected-suleat':'suleat-tab'"
+        *ngIf="tabs &&  tabs.includes('order_analytics') &&  view == 'suleat'" (click)="navigateSuleatOrderAnalytics()">
+        <mat-icon>assessment</mat-icon>
+        <h4>Order Analytics</h4>
+      </div>
+      <div class="lower-tabs">
+        <div *ngIf="system_category == 'all'">
+          <mat-form-field>
+            <mat-label>System Category</mat-label>
+            <mat-select [(ngModel)]="view">
+              <mat-option value="felicity" (click)="changeProduct()">
+                <div class="select-product">
+                <img src="../../../assets/images/felicity-logo-alone.png" alt="">
+                Felicity
+              </div>
+              </mat-option>
+              <mat-option value="suleat" (click)="changeProduct()">
+                <div class="select-product">
+                <img src="../../../assets/images/suleat-logo-alone.png" alt="">
+                Suleat
+              </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div
+          [class]="(page == 'Settings')?((view == 'felicity')?'felicity-tab selected':'suleat-tab selected-suleat'):((view=='felicity')?'felicity-tab':'suleat-tab')"
+          (click)="navigateSettings()">
+          <mat-icon>settings</mat-icon>
+          <h4>Settings</h4>
+        </div>
+        <div class="user-tab" [matMenuTriggerFor]="menu">
+          <div class="header-image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt=""
+              draggable="false">
+          </div>
+          <h5>{{email}}</h5>
+        </div>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon> person_pin</mat-icon>
+          <span> View Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-slide-toggle>Dark mode</mat-slide-toggle>
+        </button>
+
+        <button mat-menu-item (click)="openLogoutDialog()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="pageheader">
+      <button mat-fab [class]="(view == 'felicity')?'felicity-toggle':'suleat-toggle'" (click)="drawerToggle()">
+        <mat-icon *ngIf="toggleState == false">keyboard_arrow_right</mat-icon>
+        <mat-icon *ngIf="toggleState == true">keyboard_arrow_left</mat-icon>
+      </button>
+      <h1 class="pagetitle">{{page}}</h1>
+    </div>
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

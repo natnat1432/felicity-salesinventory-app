@@ -1,0 +1,68 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="new-user-container">
+    <div class="new-user-form">
+        <h1>Welcome to Felicity OTS!</h1>
+        <p>Kindly complete the fields below to continue.</p>
+        <br>
+        <form 
+        [formGroup]="newUserForm" 
+        (ngSubmit)="onSubmit()">
+        <hr>
+            <p>Enter your new password</p>
+            <div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="(isHidePassword == true)?'password':'text'" formControlName="newPassword">
+                    <mat-icon matSuffix (click)="changePasswordVisibility()">{{passwordIcon}}</mat-icon>
+                    <mat-error *ngIf="newPassword.errors?.['required']">
+                        Password field is required
+                    </mat-error>
+                    <mat-error *ngIf="newPassword.errors?.['pattern']">
+                        Password must contain at least one number, one uppercase and a
+                        lowercase letter and at least 8 characters<br />Password cannot
+                        contain whitespace
+                    </mat-error>
+                </mat-form-field> <br><br> <br>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput [type]="(isHideConfirmPassword == true)?'password':'text'" formControlName="confirmPassword">
+                    <mat-icon matSuffix (click)="changeConfirmPasswordVisibility()">{{confirmPasswordIcon}}</mat-icon>
+                    <mat-error *ngIf="confirmPassword.errors?.['required']">
+                        Confirm Password field is required
+                    </mat-error>
+                    <mat-error *ngIf="confirmPassword.errors?.['pattern']">
+                        Password must contain at least one number, one uppercase and a
+                        lowercase letter and at least 8 characters<br />Password cannot
+                        contain whitespace
+                    </mat-error>
+                    <mat-error *ngIf="confirmPassword.errors?.['confirmedValidator']">
+                        Passwords did not match
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <br>
+            <hr>
+            <p>Enter your basic information</p> <br>
+                <mat-form-field class="w-100">
+                    <mat-label>Firstname</mat-label>
+                    <input matInput formControlName="firstname">
+                </mat-form-field> <br>
+                <mat-form-field class="w-100">
+                    <mat-label>Lastname</mat-label>
+                    <input matInput formControlName="lastname">
+                </mat-form-field>
+           
+            <br>
+            <mat-form-field class="w-100">
+                <mat-label>Select Department</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let choice of departments" [value]="choice">
+                        {{choice}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <button mat-flat-button color="primary" type="submit" [disabled]="newUserForm.invalid">Save</button>
+        </form>
+    </div>
+</div>

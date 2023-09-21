@@ -1,0 +1,33 @@
+mat-drawer {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+mat-menu-item{
+    color:#a2a2a2;
+}
+
+.felicity-toggle{
+    color:white;
+    background-color:#28627f;
+    box-shadow: none;
+    outline:none;
+    width:30px;
+    height:30px;
+}
+.suleat-toggle{
+    color:white;
+    background-color:#FF5F1F;
+    box-shadow: none;
+    outline:none;
+    width:30px;
+    height:30px;
+}
+
+
+
+mat-fab{
+    box-shadow:none;
+    
+    
+}

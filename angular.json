@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/felicity-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -94,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "aa449f40-78cc-4991-9b0b-dd783b27366f"
   }
 }

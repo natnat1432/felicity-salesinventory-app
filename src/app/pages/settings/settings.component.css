@@ -1,0 +1,18 @@
+.settings{
+
+}
+.settings button{
+    width:200px;
+    height:200px;
+    white-space: break-spaces;
+    margin:10px;
+    padding:10px;
+    font-size:18px;
+}
+.settings button p{
+    margin-top:20px;
+}
+.settings button svg{
+    width:50px;
+    fill:#008b7c;
+}

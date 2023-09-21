@@ -1,0 +1,148 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar-content [page]="page" [view]="view">
+  <button mat-stroked-button color="primary" (click)="navigateSettings()"><mat-icon>keyboard_backspace</mat-icon> Back
+    to Settings</button>
+  <br><br>
+  <div class="table-upper">
+    <button mat-flat-button class="add_button" color="primary" (click)="openAddUserDialog()">
+      <mat-icon>person_add</mat-icon> Add User
+    </button>
+
+    <mat-form-field>
+      <mat-label>Select Tabs</mat-label>
+      <mat-select [(ngModel)]="tableTab" (selectionChange)="getUsers()">
+        <mat-option value="All">All</mat-option>
+        <mat-option *ngFor="let tab of userTabs" [value]="tab" >
+          {{tab}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="user_category == 'Superadmin'">
+      <mat-label>Select System Category</mat-label>
+      <mat-select [(ngModel)]="tableSystemCategory" (selectionChange)="getUsers()">
+        <mat-option value="all-category">
+          All Category
+        </mat-option>
+        <mat-option value="all">
+          All
+        </mat-option>
+        <mat-option value="felicity" >
+          Felicity
+        </mat-option>
+        <mat-option value="suleat">
+          Suleat
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br>
+  <div class="content">
+    <br>
+    <div class="table-header">
+
+      <form class="search-form">
+        <mat-form-field (clear)="clearSearch()">
+          <mat-label>Search</mat-label>
+          <input type="search" matInput placeholder="felicity.employeename@gmail.com" [formControl]="searchFormControl"
+            (keyup.enter)="getUsers()">
+        </mat-form-field>
+      </form>
+      <div class="department-select">
+        <mat-form-field>
+          <mat-label>Select Department</mat-label>
+          <mat-select (selectionChange)="getUsers()" [(ngModel)]="tableDepartment">
+            <mat-option value="All" selected>
+              All
+            </mat-option>
+            <mat-option value="Administration Department">Administration Department</mat-option>
+            <mat-option value="Sales Department">Sales Department</mat-option>
+            <mat-option value="Marketing & App Dev Department">Marketing & App Dev Department</mat-option>
+            <mat-option value="Production Department">Production Department</mat-option>
+            <mat-option value="Kitchen / R&D Department">Kitchen / R&D Department</mat-option>
+            <mat-option value="Service Delivery Department">Service Delivery Department</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="user-type-select" *ngIf="user_category == 'Superadmin'">
+        <mat-form-field>
+          <mat-label>Select User Type</mat-label>
+          <mat-select (selectionChange)="getUsers()" [(ngModel)]="tableUserType">
+            <mat-option value="All" selected>
+              All
+            </mat-option>
+            <mat-option value="Superadmin">
+              Superadmin
+            </mat-option>
+            <mat-option value="Admin">
+              Admin
+            </mat-option>
+            <mat-option value="User">
+              User
+            </mat-option>
+
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-paginator [length]="dataMax" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        aria-label="Select page" (page)="  onPageChange($event)">
+      </mat-paginator>
+    </div>
+    <br>
+
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="table-image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt=""
+              draggable="false">
+          </div>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+      </ng-container>
+      <ng-container matColumnDef="system_category">
+        <th mat-header-cell *matHeaderCellDef> System Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.system_category}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_by">
+        <th mat-header-cell *matHeaderCellDef> Created by </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdByEmail || 'Developer'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef> Date created </th>
+        <td mat-cell *matCellDef="let element"> {{ datePipe.transform(element.createdAt, 'MMM d, yyyy h:mm a') }} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="active" *ngIf="element.active == true">
+            Active
+          </div>
+          <div class="inactive" *ngIf="element.active == false">
+            Deactivated
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element"><button mat-stroked-button color="primary"
+            (click)="viewAccount(element.id)">View</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</app-sidebar-content>

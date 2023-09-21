@@ -1,0 +1,48 @@
+.login-container{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.login{
+    width:350px;
+    justify-content: center;
+    margin:auto;    
+}
+
+.login .image-container{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:50px;
+}
+.login .image-container img{
+    width:300px;
+    margin:auto;
+}
+
+.login mat-form-field{
+    width:100%;
+}
+
+.login button{
+    width:100%;
+    height:50px;
+  
+}
+
+.forgotpass{
+    cursor:pointer;
+    transition:0.3s ease-out;
+    user-select:none;
+}
+.forgotpass:hover{
+    color: rgb(99,193,150);
+    transition:0.3s ease-in;
+}
+
+mat-label{
+    user-select:none;
+}
