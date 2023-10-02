@@ -1,0 +1,68 @@
+<div class="add-user">
+  <form [formGroup]="editUserForm">
+    <h1 mat-dialog-title>Edit User</h1>
+    <div mat-dialog-content>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="Enter email" readonly>
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input type="text" matInput formControlName="firstname" placeholder="Enter firstname">
+      </mat-form-field> <br>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input type="text" matInput formControlName="lastname" placeholder="Enter lastname">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department">
+          <mat-option *ngFor="let choice of departments" [value]="choice">
+            {{choice}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <p><mat-checkbox formControlName="active" *ngIf="user_category == 'Superadmin'">Active</mat-checkbox></p>
+      <br><br>
+      <div *ngIf="user_category == 'Superadmin'">
+        <mat-form-field>
+          <mat-label>User Category</mat-label>
+          <mat-select formControlName="user_category" (selectionChange)="onUserCategoryChange($event)">
+            <mat-option value="Superadmin">Superadmin</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="User">User</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="editUserForm.value.user_category != 'Superadmin'">
+          <mat-label>System Category</mat-label>
+          <mat-select formControlName="system_category">
+            <mat-option value="felicity">Felicity</mat-option>
+            <mat-option value="suleat">Suleat</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="tabs" *ngIf="tabs && editUserForm.value.user_category != 'Superadmin'">
+        <h4>Assign tabs</h4>
+        <p><mat-checkbox formControlName="sales_admin" *ngIf="tabs.includes('Sales Admin')">Sales Admin</mat-checkbox>
+        </p>
+        <p><mat-checkbox formControlName="production_admin" *ngIf="tabs.includes('Production Admin')">Production
+            Admin</mat-checkbox></p>
+        <p><mat-checkbox formControlName="delivery_admin" *ngIf="tabs.includes('Delivery Admin')">Delivery
+            Admin</mat-checkbox></p>
+        <p><mat-checkbox formControlName="order_analytics" *ngIf="tabs.includes('Order Analytics')">Order
+            Analytics</mat-checkbox></p>
+      </div>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="editUserForm" [disabled]="!editUserForm.valid 
+        || editUserForm.value.user_category == '' 
+        || editUserForm.value.system_category == '' ">Update</button>
+
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </form>
+</div>

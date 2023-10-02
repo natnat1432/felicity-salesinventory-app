@@ -1,0 +1,102 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar-content [page]="page" [view]="view">
+  <button mat-stroked-button color="primary" (click)="navigateProducts()"><mat-icon>keyboard_backspace</mat-icon> Back
+    to Products</button>
+  <br><br>
+  <div class="content">
+    <div class="view-product" *ngIf="product_data != null">
+      <br>
+      <h3>Product Information</h3>
+      <hr>
+      <br>
+      <button mat-stroked-button color="primary" (click)="openEditProductDialog()"><mat-icon>create</mat-icon> Edit</button> <br> <br>
+      <mat-form-field>
+        <mat-label>Product ID</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.id">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Code</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_code">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Name</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Type</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_type">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Category</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_category">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Brand</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_brand">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Packaging Unit</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_packaging_unit">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Quantity Per Unit</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_quantity_per_unit">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Product Unit Measure</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.item_unit_measure">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input type="text" matInput readonly [value]="product_data.active==true?'Active':'Inactive'">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Created By</mat-label>
+        <input type="text" matInput readonly [(ngModel)]="product_data.createdByEmail">
+      </mat-form-field>
+      <br>
+      <div *ngIf="userCategory == 'Superadmin'">
+      <h3>Product Visibility</h3>
+      <section>
+        <mat-checkbox [checked]="product_data.active == true" (click)="updateProductVisibility()">Active</mat-checkbox>
+      </section>
+    </div>
+    </div>
+    <br>
+    <div class="user-activity">
+    <h3>Product Log History</h3>
+    <hr>
+    <br>
+
+    <mat-accordion multi *ngIf="productLoggingData">
+      <mat-expansion-panel *ngFor="let productlogging of productLoggingData">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{productlogging.logging_type}}
+          </mat-panel-title>
+          <mat-panel-description>
+            By {{productlogging.createdByEmail}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngIf="productlogging.description">
+        <p *ngFor="let desc of productlogging.description" > 
+          {{desc}} 
+        </p>
+        </div>
+        <hr>
+        Executed on {{datePipe.transform(productlogging.createdAt, 'MMM d, yyyy h:mm a')}}
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  </div>
+</app-sidebar-content>

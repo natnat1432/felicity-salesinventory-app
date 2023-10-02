@@ -21,6 +21,16 @@ import { SuleatHomeComponent } from './pages/suleat-home/suleat-home.component';
 import { ErrorwrongpageComponent } from './components/errorwrongpage/errorwrongpage.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { FelicityProductlistComponent } from './pages/felicity-productlist/felicity-productlist.component';
+import { FelicitySupplierlistComponent } from './pages/felicity-supplierlist/felicity-supplierlist.component';
+import { ViewSupplierComponent } from './pages/view-supplier/view-supplier.component';
+import { ViewFelicityproductComponent } from './pages/view-felicityproduct/view-felicityproduct.component';
+import { FelicityPricelistComponent } from './pages/felicity-pricelist/felicity-pricelist.component';
+import { FelicityMarketcompetitorsComponent } from './pages/felicity-marketcompetitors/felicity-marketcompetitors.component';
+import { FelicityPricelistviewComponent } from './pages/felicity-pricelistview/felicity-pricelistview.component';
+import { SuleatProductlistComponent } from './pages/suleat-productlist/suleat-productlist.component';
+import { ViewSuleatproductComponent } from './pages/view-suleatproduct/view-suleatproduct.component';
+import { SuleatPricelistviewComponent } from './pages/suleat-pricelistview/suleat-pricelistview.component';
+import { ViewUserprofileComponent } from './pages/view-userprofile/view-userprofile.component';
 
 const routes: Routes = [
   {
@@ -45,12 +55,6 @@ const routes: Routes = [
     path:'user-list', component:UserListComponent
   },
   {
-    path:'error-page', component:ErrorpageComponent
-  },
-  {
-    path:'view-user', component:ViewUserComponent
-  },
-  {
     path:'new-user-input', component:NewUserInputComponent
   },
   {
@@ -64,6 +68,21 @@ const routes: Routes = [
   },
   {
     path:'felicity-orderanalytics', component:FelicityOrderanalyticsComponent
+  },
+  {
+    path:'felicity-productlist', component:FelicityProductlistComponent
+  },
+  {
+    path:'felicity-supplierlist', component:FelicitySupplierlistComponent
+  },
+  {
+    path:'felicity-pricelist', component:FelicityPricelistComponent
+  },
+  {
+    path:'felicity-pricelistview', component:FelicityPricelistviewComponent
+  },
+  {
+    path:'felicity-marketcompetitors', component:FelicityMarketcompetitorsComponent
   },
   {
     path:'suleat-salesadmin', component:SuleatSalesadminComponent
@@ -81,13 +100,34 @@ const routes: Routes = [
     path:'suleat-orderanalytics', component:SuleatOrderanalyticsComponent
   },
   {
+    path:'suleat-productlist', component:SuleatProductlistComponent
+  },
+  {
+    path:'suleat-pricelistview', component:SuleatPricelistviewComponent
+  },
+  {
+    path:'view-user', component:ViewUserComponent
+  },
+  {
+    path:'view-supplier', component:ViewSupplierComponent
+  },
+  {
+    path:'view-felicityproduct', component:ViewFelicityproductComponent 
+  },
+  {
+    path:'view-suleatproduct', component:ViewSuleatproductComponent
+  },
+  {
+    path:'view-userprofile', component:ViewUserprofileComponent
+  },
+  {
     path:'offlimits', component:ErrorwrongpageComponent
   },
   {
     path:'reset-password', component:ResetPasswordComponent
   },
   {
-    path:'felicity-productlist', component:FelicityProductlistComponent
+    path:'error-page', component:ErrorpageComponent
   },
   {
     path:'**', component:ErrorpageComponent

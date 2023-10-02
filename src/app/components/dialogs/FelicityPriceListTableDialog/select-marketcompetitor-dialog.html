@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Select Market Competitors</h1>
+<div class="select-marketcompetitors">
+  <div class="input">
+    <form [formGroup]="selectMarketCompetitors">
+      <div mat-dialog-content>
+
+        <mat-spinner color="primary" *ngIf="!marketCompetitors"></mat-spinner>
+        <mat-radio-group aria-label="Select Supplier" formControlName="market_name">
+          <mat-radio-button [value]="competitor" *ngFor="let competitor of marketCompetitors"
+            (change)="onChangeRadio(competitor)">{{competitor.market_name}}</mat-radio-button> <br>
+        </mat-radio-group>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="selectMarketCompetitors.value"
+          [disabled]="!selectMarketCompetitors.valid">Select</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

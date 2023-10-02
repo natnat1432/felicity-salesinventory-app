@@ -11,7 +11,7 @@
       </div>
       <br>
       <h3>User Information</h3>
-      <div class="view-user-actions" *ngIf="user_data.createdByEmail">
+      <div class="view-user-actions" *ngIf="user_data.createdByEmail && userCategory == 'Superadmin'">
         <button mat-stroked-button color="warn" (click)="openDeleteAccountDialog()"> <mat-icon>delete</mat-icon> Delete User</button>
         <button mat-stroked-button (click)="openResetPasswordDialog()"><mat-icon>lock</mat-icon> Reset Password</button>
       </div>

@@ -1,0 +1,30 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar-content [page]="page" [view]="view">
+    <div class="content">
+        <button mat-stroked-button color="primary" (click)="navigateSettings()"><mat-icon>keyboard_backspace</mat-icon>
+            Back
+            to Settings</button>
+
+        <br><br>
+        <button (click)="navigateMarketCompetitors()" mat-stroked-button
+            color="primary"><mat-icon>supervised_user_circle</mat-icon> View Market Competitors</button>
+
+        <br><br>
+
+        <button mat-flat-button class="add_button" color="primary" (click)="openAddPriceEffectivity()">
+            <mat-icon>note_add</mat-icon> Add Price Effectivity
+        </button>
+        <br><br>
+        <h3>Price Effectivities</h3>
+        <div class="list-buttons">
+            <button mat-stroked-button color="primary" class="button" *ngFor="let pricerange of priceeffectivity_data"
+                (click)="viewPriceRange(pricerange.id)">
+                <mat-icon> insert_drive_file</mat-icon> <br>
+                {{ datePipe.transform(pricerange.start_effectivity_date, 'MMM dd, yyyy') }} - {{
+                datePipe.transform(pricerange.end_effectivity_date, 'MMM dd, yyyy') }}
+            </button>
+        </div>
+
+    </div>
+
+</app-sidebar-content>

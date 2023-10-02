@@ -1,27 +1,22 @@
-import { Injectable } from '@angular/core';
-import { StorageMap } from '@ngx-pwa/local-storage';
+import { Injectable } from "@angular/core";
+import { StorageMap } from "@ngx-pwa/local-storage";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class LocalstorageService {
+  constructor(private storage: StorageMap) {}
 
-  constructor(
-    private storage:StorageMap,
-  ) { 
-
+  saveData(name: string, data: any) {
+    this.storage.set(name, data).subscribe();
   }
-
-  saveData(name:string,data:any){
-    this.storage.set(name,data).subscribe()
+  async getData(name: string) {
+    return await this.storage.get(name).toPromise();
   }
-   async getData(name:string){
-    return await this.storage.get(name).toPromise()
+  deleteData(name: string) {
+    this.storage.delete(name).subscribe();
   }
-  deleteData(name:string){
-    this.storage.delete(name).subscribe()
-  }
-  clearData(){
-    this.storage.clear().subscribe()
+  clearData() {
+    this.storage.clear().subscribe();
   }
 }

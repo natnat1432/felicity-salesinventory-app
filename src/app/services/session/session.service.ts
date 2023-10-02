@@ -11,18 +11,18 @@ export class SessionService {
   constructor(
     private locstorage: LocalstorageService,
     private http: HttpClient,
-    private router: Router,
+    private router: Router
   ) {}
 
   saveSession(data: any) {
     for (const key in data.userData) {
       if (data.userData.hasOwnProperty(key)) {
-          this.locstorage.saveData(key, data.userData[key])
+        this.locstorage.saveData(key, data.userData[key]);
       }
     }
     for (const key in data.token) {
       if (data.token.hasOwnProperty(key)) {
-          this.locstorage.saveData(key, data.token[key])
+        this.locstorage.saveData(key, data.token[key]);
       }
     }
   }
@@ -40,16 +40,16 @@ export class SessionService {
         .post(`${environment.serverAPI}/api/auth/token/validate`, formData)
         .subscribe(
           (response: any) => {
-            if (response.valid === true) {
+            if (response.valid) {
             } else {
               this.refreshToken();
             }
           },
           (error: any) => {
-            if (error.error.valid === false) {
+            if (!error.error.valid) {
               this.refreshToken();
             } else {
-              console.warn('Error checking session', error)
+              console.warn("Error checking session", error);
             }
           }
         );
@@ -70,16 +70,17 @@ export class SessionService {
           async (response: any) => {
             if (response.valid === true) {
               //util redirect here
-              const system_category = await this.locstorage.getData("system_category")
-              if(system_category == 'all')
-              {
-                this.router.navigate(["login-select"])
+              const system_category = await this.locstorage.getData(
+                "system_category"
+              );
+              if (system_category == "all") {
+                this.router.navigate(["login-select"]);
               }
-              if(system_category == 'felicity'){
-                this.router.navigate(["home"])
+              if (system_category == "felicity") {
+                this.router.navigate(["home"]);
               }
-              if(system_category == 'suleat'){
-                this.router.navigate(["suleat-home"])
+              if (system_category == "suleat") {
+                this.router.navigate(["suleat-home"]);
               }
             } else {
             }
@@ -87,7 +88,7 @@ export class SessionService {
           (error: any) => {
             if (error.error.valid === false) {
             } else {
-              console.warn('Error checking session', error)
+              console.warn("Error checking session", error);
             }
           }
         );
@@ -95,7 +96,7 @@ export class SessionService {
   }
   async refreshToken() {
     const refreshToken = await this.locstorage.getData("refreshToken");
-    if (refreshToken == null) {
+    if (!refreshToken) {
       this.router.navigate([""]);
     } else {
       const formData = {
@@ -105,12 +106,12 @@ export class SessionService {
         .post(`${environment.serverAPI}/api/auth/token`, formData)
         .subscribe(
           (response: any) => {
-            if (response.valid === true && response.success === true) {
+            if (response.valid && response.success) {
               this.locstorage.saveData("accessToken", response.accessToken);
             }
           },
           (error) => {
-            if (error.error.valid === false || error.error.success === false) {
+            if (!error.error.valid || !error.error.success) {
               this.locstorage.clearData();
               this.router.navigate([""]);
             }
@@ -136,7 +137,7 @@ export class SessionService {
         .subscribe(
           (response: any) => {
             this.locstorage.clearData();
-      
+
             this.router.navigate(["/"]);
           },
           (error) => {

@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Add Product</h1>
+<div class="add-felicity-product">
+  <div class="input">
+    <form [formGroup]="addSuleatProductForm">
+      <div mat-dialog-content>
+
+        <mat-form-field>
+          <mat-label>Item Name</mat-label>
+          <input type="text" matInput placeholder="" formControlName="item_name">
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Item Category</mat-label>
+          <mat-select formControlName="item_category">
+            <mat-option *ngFor="let each of item_category_options" [value]="each">{{each}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Packaging Unit</mat-label>
+          <mat-select formControlName="item_packaging_unit">
+            <mat-option *ngFor="let each of packaging_unit_options" [value]="each">{{each}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Unit of Measure</mat-label>
+          <mat-select formControlName="item_unit_measure">
+            <mat-option [value]="each" *ngFor="let each of unit_measure_options">{{each}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="addSuleatProductForm.value"
+          [disabled]="!addSuleatProductForm.valid">Add</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

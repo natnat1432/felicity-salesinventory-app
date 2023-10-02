@@ -1,18 +1,31 @@
-.settings{
+.settings {}
 
-}
-.settings button{
-    width:200px;
-    height:200px;
+.settings button {
+    width: 200px;
+    height: 200px;
     white-space: break-spaces;
-    margin:10px;
-    padding:10px;
-    font-size:18px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    background: rgb(108, 189, 145);
+    color: white;
+    background: linear-gradient(18deg, rgba(108, 189, 145, 1) 18%, rgba(0, 139, 124, 1) 100%);
+    transition: 0.8s ease-out;
 }
-.settings button p{
-    margin-top:20px;
+
+.settings button:hover {
+
+    background: rgb(108, 189, 145);
+    background: linear-gradient(18deg, rgba(108, 189, 145, 1) 0%, rgba(0, 139, 124, 1) 43%);
+    transition: 1.5s ease-in;
 }
-.settings button svg{
-    width:50px;
-    fill:#008b7c;
+
+.settings button p {
+    margin-top: 20px;
+}
+
+.settings button svg {
+    width: 50px;
+    fill: white;
 }

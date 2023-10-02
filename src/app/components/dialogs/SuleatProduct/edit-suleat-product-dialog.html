@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Edit Product</h1>
+<div class="add-felicity-product">
+  <div class="input">
+    <form [formGroup]="editSuleatProductForm">
+      <div mat-dialog-content>
+
+
+        <mat-form-field>
+          <mat-label>Product ID</mat-label>
+          <input type="text" matInput placeholder="" formControlName="id" readonly>
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Product Code</mat-label>
+          <input type="text" matInput placeholder="" formControlName="item_code" readonly>
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Product Name</mat-label>
+          <input type="text" matInput placeholder="" formControlName="item_name">
+        </mat-form-field> <br>
+        <mat-form-field>
+          <mat-label>Product Category</mat-label>
+          <mat-select formControlName="item_category">
+            <mat-option *ngFor="let each of item_category_options" [value]="each">{{each}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+        <div class="flex">
+          <mat-form-field>
+            <mat-label>Packaging Unit</mat-label>
+            <mat-select formControlName="item_packaging_unit">
+              <mat-option [value]="each" *ngFor="let each of packaging_unit_options">{{each}}</mat-option>
+            </mat-select>
+          </mat-form-field> <br>
+        </div> <br>
+        <mat-form-field>
+          <mat-label>Unit of Measure</mat-label>
+          <mat-select formControlName="item_unit_measure">
+            <mat-option [value]="each" *ngFor="let each of unit_measure_options">{{each}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button
+          [mat-dialog-close]="{editSuleatProductForm:editSuleatProductForm.value, changes:editProductChanges}"
+          [disabled]="!editSuleatProductForm.valid">Update</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

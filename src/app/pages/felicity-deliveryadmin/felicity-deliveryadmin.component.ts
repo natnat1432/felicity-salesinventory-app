@@ -11,13 +11,10 @@ export class FelicityDeliveryadminComponent implements OnInit {
   page: string = "Felicity Delivery Admin";
   view: string = "felicity";
 
-  constructor(
-    private session: SessionService,
-    private util:UtilService
-    ) {}
+  constructor(private session: SessionService, private util: UtilService) {}
   async ngOnInit() {
-    await this.util.checkNewUser()
-    await this.util.checkFelicity()
+    await this.util.checkNewUser();
+    await this.util.checkFelicity();
     await this.session.checkSession();
   }
 }

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.item_category}} Suppliers</h1>
+<div class="select-supplier">
+  <div class="input">
+    <form [formGroup]="selectSupplier">
+      <div mat-dialog-content>
+
+        <mat-spinner color="primary" *ngIf="!supplierlist"></mat-spinner>
+        <mat-radio-group aria-label="Select Supplier" formControlName="supplier_name">
+          <mat-radio-button [value]="supplier" *ngFor="let supplier of supplierlist"
+            (change)="onChangeRadio(supplier)">{{supplier.code}} | {{supplier.registered_name}}</mat-radio-button> <br>
+        </mat-radio-group>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="selectSupplier.value" [disabled]="!selectSupplier.valid">Select</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

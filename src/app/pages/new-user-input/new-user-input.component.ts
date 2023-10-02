@@ -26,11 +26,11 @@ export class NewUserInputComponent implements OnInit {
     "Kitchen / R&D Department",
     "Service Delivery Department",
   ];
-  isHidePassword:boolean = true
-  isHideConfirmPassword:boolean = true
+  isHidePassword: boolean = true;
+  isHideConfirmPassword: boolean = true;
   passwordsMatching = false;
-  passwordIcon:string = 'visibility'
-  confirmPasswordIcon:string = 'visibility'
+  passwordIcon: string = "visibility";
+  confirmPasswordIcon: string = "visibility";
   isConfirmPasswordDirty = false;
   firstname: any;
   lastname: any;
@@ -89,7 +89,6 @@ export class NewUserInputComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log(this.newUserForm);
     if (!this.newUserForm?.valid) {
       return;
     }
@@ -119,7 +118,6 @@ export class NewUserInputComponent implements OnInit {
     return await Promise.all([response, loadingPromise]).then(
       async ([response]: any) => {
         this.isLoading = false;
-        console.log(response);
         if (response.message) {
           await this.util.createLogging(
             `Logged in for the first time and updated his/her info`
@@ -141,7 +139,6 @@ export class NewUserInputComponent implements OnInit {
       },
       (error) => {
         this.isLoading = false;
-        console.log(error);
       }
     );
   }
@@ -164,9 +161,7 @@ export class NewUserInputComponent implements OnInit {
             this.locstorage.saveData("department", response.department);
           }
         },
-        (error) => {
-          console.log(error);
-        }
+        (error) => {}
       );
   }
 
@@ -188,22 +183,20 @@ export class NewUserInputComponent implements OnInit {
     };
   }
 
-  changePasswordVisibility(){
-    this.isHidePassword = !this.isHidePassword
-    if(this.passwordIcon == 'visibility'){
-      this.passwordIcon = 'visibility_off'
-    }
-    else{
-      this.passwordIcon = 'visibility'
+  changePasswordVisibility() {
+    this.isHidePassword = !this.isHidePassword;
+    if (this.passwordIcon == "visibility") {
+      this.passwordIcon = "visibility_off";
+    } else {
+      this.passwordIcon = "visibility";
     }
   }
-  changeConfirmPasswordVisibility(){
-    this.isHideConfirmPassword = !this.isHideConfirmPassword
-    if(this.confirmPasswordIcon == 'visibility'){
-      this.confirmPasswordIcon = 'visibility_off'
-    }
-    else{
-      this.confirmPasswordIcon = 'visibility'
+  changeConfirmPasswordVisibility() {
+    this.isHideConfirmPassword = !this.isHideConfirmPassword;
+    if (this.confirmPasswordIcon == "visibility") {
+      this.confirmPasswordIcon = "visibility_off";
+    } else {
+      this.confirmPasswordIcon = "visibility";
     }
   }
 }

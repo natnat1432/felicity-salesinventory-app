@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { UtilService } from 'src/app/services/util/util.service';
+import { Component, OnInit } from "@angular/core";
+import { SessionService } from "src/app/services/session/session.service";
+import { UtilService } from "src/app/services/util/util.service";
 
 @Component({
   selector: "app-felicity-productionadmin",
@@ -12,13 +12,10 @@ export class FelicityProductionadminComponent implements OnInit {
   page: string = "Felicity Product Admin";
   view: string = "felicity";
 
-  constructor(
-    private session: SessionService,
-    private util: UtilService
-    ) {}
+  constructor(private session: SessionService, private util: UtilService) {}
   async ngOnInit() {
-    await this.util.checkNewUser()
-    await this.util.checkFelicity()
+    await this.util.checkNewUser();
+    await this.util.checkFelicity();
     await this.session.checkSession();
   }
 }

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Select Product</h1>
+<div class="select-suleatproduct">
+    <div class="input">
+        <form [formGroup]="selectSuleatProduct">
+            <div mat-dialog-content>
+
+                <mat-spinner color="primary" *ngIf="!suleatProducts"></mat-spinner>
+                <mat-radio-group aria-label="Select Supplier" formControlName="product_id">
+                    <div *ngFor="let product of suleatProducts">
+                        <mat-radio-button [value]="product.id" (change)="onChangeRadio(product)">{{product.item_code}} -
+                            {{product.item_name}}</mat-radio-button> <br>
+                    </div>
+                </mat-radio-group>
+
+            </div>
+            <br>
+            <mat-form-field>
+                <mat-label>Product Price</mat-label>
+                <input matInput placeholder="₱" type="number" formControlName="item_price">
+              </mat-form-field>
+            <div mat-dialog-actions>
+                <button mat-button [mat-dialog-close]="selectSuleatProduct.value"
+                    [disabled]="!selectSuleatProduct.valid">Select</button>
+                <button mat-button (click)="onNoClick()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

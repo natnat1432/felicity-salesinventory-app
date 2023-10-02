@@ -1,0 +1,244 @@
+.table {
+  width: 100%;
+  overflow-x: scroll;
+  font-size: 11px;
+  text-align: center;
+}
+
+.table table {
+  width: 100%;
+  height: 100%;
+}
+
+.table table tr {
+  width: 100%;
+}
+
+th,
+td {
+  border: 0.5px solid rgb(231, 231, 231);
+}
+
+
+.mat-column-ProductID {
+  min-width: 120px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-ProductName {
+  min-width: 250px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-EffectivityDate {
+  min-width: 220px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-PurchasingPrice {
+  min-width: 150px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-SupplierName {
+  cursor: pointer;
+  min-width: 220px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-SupplierCode {
+  min-width: 120px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-StandardMarkupPercentage {
+  min-width: 120px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-StandardPrice {
+  min-width: 150px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-PremiumDiscountPercentage {
+  min-width: 120px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-PremiumPrice {
+  min-width: 150px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-Competitor1,
+.mat-column-Competitor2,
+.mat-column-Competitor3 {
+  min-width: 220px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-Competitor1Price,
+.mat-column-Competitor2Price,
+.mat-column-Competitor3Price {
+  min-width: 150px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+.table-percentage-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.table-percentage-header mat-form-field {
+  margin-inline: 10px;
+  margin-top: 20px;
+}
+
+.table-percentage-header button {
+  height: 55px;
+  margin-inline: 10px;
+}
+
+.action {
+  width: 50px;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+td:first-child,
+th:first-child,
+td:nth-child(2),
+th:nth-child(2) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  color: white;
+  background-color: #6cbd91;
+}
+
+.header-buttons {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.font-lighter {
+  font-weight: lighter;
+  margin-right: 10px;
+}
+
+b {
+  font-weight: bolder;
+}

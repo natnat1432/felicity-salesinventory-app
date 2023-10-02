@@ -28,6 +28,11 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {
   FormControl,
   FormGroupDirective,
@@ -36,6 +41,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+
 import { LoadingComponent } from './components/loading/loading.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SidebarContentComponent } from './components/sidebar-content/sidebar-content.component';
@@ -59,6 +65,16 @@ import { SuleatHomeComponent } from './pages/suleat-home/suleat-home.component';
 import { ErrorwrongpageComponent } from './components/errorwrongpage/errorwrongpage.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { FelicityProductlistComponent } from './pages/felicity-productlist/felicity-productlist.component';
+import { FelicitySupplierlistComponent } from './pages/felicity-supplierlist/felicity-supplierlist.component';
+import { ViewSupplierComponent } from './pages/view-supplier/view-supplier.component';
+import { ViewFelicityproductComponent } from './pages/view-felicityproduct/view-felicityproduct.component';
+import { FelicityPricelistComponent } from './pages/felicity-pricelist/felicity-pricelist.component';
+import { FelicityMarketcompetitorsComponent } from './pages/felicity-marketcompetitors/felicity-marketcompetitors.component';
+import { FelicityPricelistviewComponent } from './pages/felicity-pricelistview/felicity-pricelistview.component';
+import { SuleatProductlistComponent } from './pages/suleat-productlist/suleat-productlist.component';
+import { ViewSuleatproductComponent } from './pages/view-suleatproduct/view-suleatproduct.component';
+import { SuleatPricelistviewComponent } from './pages/suleat-pricelistview/suleat-pricelistview.component';
+import { ViewUserprofileComponent } from './pages/view-userprofile/view-userprofile.component';
 
 
 
@@ -88,6 +104,16 @@ import { FelicityProductlistComponent } from './pages/felicity-productlist/felic
     ErrorwrongpageComponent,
     ResetPasswordComponent,
     FelicityProductlistComponent,
+    FelicitySupplierlistComponent,
+    ViewSupplierComponent,
+    ViewFelicityproductComponent,
+    FelicityPricelistComponent,
+    FelicityMarketcompetitorsComponent,
+    FelicityPricelistviewComponent,
+    SuleatProductlistComponent,
+    ViewSuleatproductComponent,
+    SuleatPricelistviewComponent,
+    ViewUserprofileComponent,
 
   ],
   imports: [
@@ -104,15 +130,20 @@ import { FelicityProductlistComponent } from './pages/felicity-productlist/felic
     MatSidenavModule,
     MatMenuModule,
     MatDialogModule,
+    MatListModule,
     MatSlideToggleModule,
     _MatSlideToggleRequiredValidatorModule,
     MatTreeModule,
     CdkAccordionModule,
     MatPaginatorModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatTableModule,
     NgFor,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
      MatFormFieldModule, 

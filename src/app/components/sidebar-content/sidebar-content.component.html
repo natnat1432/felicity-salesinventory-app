@@ -10,34 +10,38 @@
       <div class="headings">
         <h4>Main Menu</h4>
       </div>
-      <div [class]="(page == 'Felicity Sales Admin')?'felicity-tab selected':'felicity-tab'" *ngIf="tabs && tabs.includes('sales_admin') && view == 'felicity'"
-        (click)="navigateFelicitySalesAdmin()">
+      <div [class]="(page == 'Felicity Sales Admin')?'felicity-tab selected':'felicity-tab'"
+        *ngIf="tabs && tabs.includes('sales_admin') && view == 'felicity'" (click)="navigateFelicitySalesAdmin()">
         <mat-icon>account_balance_wallet</mat-icon>
         <h4>Sales Admin</h4>
       </div>
       <div [class]="(page == 'Felicity Production Admin')?'felicity-tab selected':'felicity-tab'"
-        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'felicity'" (click)="navigateFelicityProductionAdmin()">
+        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'felicity'"
+        (click)="navigateFelicityProductionAdmin()">
         <mat-icon>storage</mat-icon>
         <h4>Production Admin</h4>
       </div>
       <div [class]="(page == 'Felicity Delivery Admin')?'felicity-tab selected':'felicity-tab'"
-        *ngIf="tabs &&  tabs.includes('delivery_admin') &&  view == 'felicity'" (click)="navigateFelicityDeliveryAdmin()">
+        *ngIf="tabs &&  tabs.includes('delivery_admin') &&  view == 'felicity'"
+        (click)="navigateFelicityDeliveryAdmin()">
         <mat-icon> local_shipping</mat-icon>
         <h4>Delivery Admin</h4>
       </div>
       <div [class]="(page == 'Felicity Order Analytics')?'felicity-tab selected':'felicity-tab'"
-        *ngIf="tabs &&  tabs.includes('order_analytics') && view == 'felicity'" (click)="navigateFelicityOrderAnalytics()">
+        *ngIf="tabs &&  tabs.includes('order_analytics') && view == 'felicity'"
+        (click)="navigateFelicityOrderAnalytics()">
         <mat-icon>assessment</mat-icon>
         <h4>Order Analytics</h4>
       </div>
 
-      <div [class]="(page == 'Suleat Sales Admin')?'suleat-tab selected-suleat':'suleat-tab'" *ngIf="tabs && tabs.includes('sales_admin') && view == 'suleat'"
-        (click)="navigateSuleatSalesAdmin()">
+      <div [class]="(page == 'Suleat Sales Admin')?'suleat-tab selected-suleat':'suleat-tab'"
+        *ngIf="tabs && tabs.includes('sales_admin') && view == 'suleat'" (click)="navigateSuleatSalesAdmin()">
         <mat-icon>account_balance_wallet</mat-icon>
         <h4>Sales Admin</h4>
       </div>
       <div [class]="(page == 'Suleat Production Admin')?'suleat-tab selected-suleat':'suleat-tab'"
-        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'suleat'" (click)="navigateSuleatProductionAdmin()">
+        *ngIf="tabs &&  tabs.includes('production_admin') &&  view == 'suleat'"
+        (click)="navigateSuleatProductionAdmin()">
         <mat-icon>style</mat-icon>
         <h4>Production Admin</h4>
       </div>
@@ -58,15 +62,15 @@
             <mat-select [(ngModel)]="view">
               <mat-option value="felicity" (click)="changeProduct()">
                 <div class="select-product">
-                <img src="../../../assets/images/felicity-logo-alone.png" alt="">
-                Felicity
-              </div>
+                  <img src="../../../assets/images/felicity-logo-alone.png" alt="">
+                  Felicity
+                </div>
               </mat-option>
               <mat-option value="suleat" (click)="changeProduct()">
                 <div class="select-product">
-                <img src="../../../assets/images/suleat-logo-alone.png" alt="">
-                Suleat
-              </div>
+                  <img src="../../../assets/images/suleat-logo-alone.png" alt="">
+                  Suleat
+                </div>
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -86,8 +90,8 @@
         </div>
       </div>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon> person_pin</mat-icon>
+        <button mat-menu-item (click)="navigateProfile()">
+          <mat-icon>supervised_user_circle</mat-icon>
           <span> View Profile</span>
         </button>
         <button mat-menu-item>

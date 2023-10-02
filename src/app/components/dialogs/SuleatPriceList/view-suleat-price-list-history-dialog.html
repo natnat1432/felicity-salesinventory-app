@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>View Price Edit History</h1>
+<div class="suleat-pricelists-view-edit-history">
+    <div class="center-all" *ngIf="!pricelistHistory">
+        <mat-spinner color="primary"></mat-spinner>
+    </div>
+    <div class="input">
+        <mat-list *ngIf="pricelistHistory">
+            <mat-list-item *ngFor="let pricelist of pricelistHistory; let index = index">Price: ₱{{pricelist.item_price}} | Updated by {{pricelist.account.email}} at {{ datePipe.transform(pricelist.createdAt, 'MMM dd, yyyy') }}</mat-list-item>
+        </mat-list>
+    </div>
+</div>

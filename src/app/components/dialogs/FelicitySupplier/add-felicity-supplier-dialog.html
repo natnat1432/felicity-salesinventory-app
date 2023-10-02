@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Add Supplier</h1>
+<div class="add-felicity-supplier">
+  <div class="input">
+    <form [formGroup]="newSupplier">
+      <div mat-dialog-content>
+        <mat-form-field class="w-100">
+          <mat-label>Supplier Name</mat-label>
+          <input type="text" matInput formControlName="registered_name">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="w-100">
+          <mat-label>Supplier Landline</mat-label>
+          <input type="text" matInput formControlName="landline">
+        </mat-form-field> <br>
+        <mat-form-field class="supplier-business-address">
+          <mat-label>Business Address</mat-label>
+          <textarea matInput formControlName="business_address"></textarea>
+        </mat-form-field> <br>
+        <mat-form-field class="w-100">
+          <mat-label>Contact Person</mat-label>
+          <input type="text" matInput formControlName="contact_person">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="w-100">
+          <mat-label>Contact Person Mobile Number</mat-label>
+          <input type="text" matInput formControlName="contact_person_mobile">
+        </mat-form-field> <br>
+        <mat-form-field class="w-100">
+          <mat-label>Supply Category</mat-label>
+          <mat-select formControlName="supply_category">
+            <mat-option *ngFor="let category of data.category" [value]="category">{{category}}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="newSupplier" [disabled]="!newSupplier.valid">Add</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

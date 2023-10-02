@@ -1,0 +1,73 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar-content [page]="page" [view]="view">
+  <div class="content">
+    <button mat-stroked-button color="primary" (click)="navigateSettings()"><mat-icon>keyboard_backspace</mat-icon>
+      Back to Settings</button>
+
+    <br><br>
+   
+    <mat-divider></mat-divider>
+    <br><br>
+    <h1>Product List</h1>
+    <div class="header-buttons">
+      <button mat-stroked-button color="primary" (click)="exportPriceList()">
+        <mat-icon>description</mat-icon> Export to Excel
+      </button>
+      <button mat-stroked-button color="primary" (click)="openAddProduct()">
+        <mat-icon>add</mat-icon> Add Item
+      </button>
+      <button mat-stroked-button color="primary" (click)="setEdit()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </div>
+    <br><br>
+    <div class="table" style="overflow-x: auto;">
+      <table mat-table [dataSource]="dataSource">
+        <div class="sticky">
+          <ng-container matColumnDef="ProductID" stickyend>
+            <th mat-header-cell *matHeaderCellDef><b>Product ID</b></th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+          <ng-container matColumnDef="ProductCode" stickyend>
+            <th mat-header-cell *matHeaderCellDef><b>Product Code</b></th>
+            <td mat-cell *matCellDef="let element">{{element.item_code}}</td>
+          </ng-container>
+          <ng-container matColumnDef="ProductName" stickyend>
+            <th mat-header-cell *matHeaderCellDef><b>Product Name</b></th>
+            <td mat-cell *matCellDef="let element">{{element.item_name}}</td>
+          </ng-container>
+          <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef><b>Price</b></th>
+            <td mat-cell *matCellDef="let element; let index = index">
+              <span *ngIf="!isEdit && element.latestItemPrice!=null">₱{{element.latestItemPrice}}</span>
+              <mat-form-field *ngIf="isEdit">
+                <mat-label>Enter New Price (₱)</mat-label>
+                <input matInput [value]="element.latestItemPrice" [(ngModel)]="element.latestItemPrice" type="number"
+                  placeholder="₱">
+              </mat-form-field>
+            </td>
+          </ng-container>
+        </div>
+       
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> <span *ngIf="isEdit">Action</span></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button color="primary" *ngIf="isEdit && element.isSaved == false"
+              (click)="updatePriceList(element)">
+              <span *ngIf="element.isSaved == false && element.isSave == false">Save</span>
+              <mat-spinner style="width:20px; height:20px;" *ngIf="element.isSaved == false && element.isSave == true">
+              </mat-spinner>
+            </button>
+            <span *ngIf="element.isSaved == true && element.isSave == false">Saved</span>
+            <button mat-stroked-button (click)="showEditHistory(element.product_id)" color="primary">Edit History</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table"></tr>
+      </table>
+    </div>
+  </div>
+
+
+
+</app-sidebar-content>

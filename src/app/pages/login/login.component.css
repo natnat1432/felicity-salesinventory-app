@@ -1,48 +1,51 @@
-.login-container{
-    width:100%;
-    height:100%;
-    display:flex;
+.login-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
-.login{
-    width:350px;
+
+.login {
+    width: 350px;
     justify-content: center;
-    margin:auto;    
+    margin: auto;
 }
 
-.login .image-container{
-    width:100%;
-    display:flex;
+.login .image-container {
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom:50px;
-}
-.login .image-container img{
-    width:300px;
-    margin:auto;
+    margin-bottom: 50px;
 }
 
-.login mat-form-field{
-    width:100%;
+.login .image-container img {
+    width: 300px;
+    margin: auto;
 }
 
-.login button{
-    width:100%;
-    height:50px;
-  
+.login mat-form-field {
+    width: 100%;
 }
 
-.forgotpass{
-    cursor:pointer;
-    transition:0.3s ease-out;
-    user-select:none;
-}
-.forgotpass:hover{
-    color: rgb(99,193,150);
-    transition:0.3s ease-in;
+.login button {
+    width: 100%;
+    height: 50px;
+
 }
 
-mat-label{
-    user-select:none;
+.forgotpass {
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    user-select: none;
+}
+
+.forgotpass:hover {
+    color: rgb(99, 193, 150);
+    transition: 0.3s ease-in;
+}
+
+mat-label {
+    user-select: none;
 }

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add Felicity Price Effectivity Range</h1>
+<div class="add-felicity-priceeffectivity">
+  <div class="input">
+    <form [formGroup]="addFelicityPriceEffectivity">
+      <div mat-dialog-content>
+        <mat-form-field>
+
+          <mat-label>Enter a price effectivity range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start effectivity date" formControlName="start_effectivity_date">
+            <input matEndDate placeholder="End effectivity date" formControlName="end_effectivity_date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="addFelicityPriceEffectivity" [disabled]="
+  !addFelicityPriceEffectivity.valid">Add</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -53,7 +53,7 @@ export interface UserElement {
 export class UserListComponent implements OnInit {
   isLoading: boolean = false;
   page: string = "User Management";
-  tableUserType:any;
+  tableUserType: any;
   tableSystemCategory: any;
   tableDepartment: any;
   view: string = "";
@@ -73,8 +73,8 @@ export class UserListComponent implements OnInit {
   tablepage: number = 0;
   pageSize: number = 5;
   dataMax: number = 0;
-  tableTab:any;
-  userTabs:any;
+  tableTab: any;
+  userTabs: any;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   public system_category: any;
   public user_category: any;
@@ -98,24 +98,21 @@ export class UserListComponent implements OnInit {
     await this.session.checkSession();
     this.userTabs = await this.locstorage.getData("tabs");
     this.system_category = await this.locstorage.getData("system_category");
-    if(this.system_category != 'all' && this.system_category != this.view)
-    {
-      this.router.navigate(["offlimits"])
+    if (this.system_category != "all" && this.system_category != this.view) {
+      this.router.navigate(["offlimits"]);
     }
     if (this.system_category == "all") {
       this.system_category = "all-category";
     }
     this.user_category = await this.locstorage.getData("user_category");
-    if(this.user_category == 'Superadmin')
-    {
-      this.tableUserType = 'All'
-      this.tableTab = 'All'
+    if (this.user_category == "Superadmin") {
+      this.tableUserType = "All";
+      this.tableTab = "All";
+    } else {
+      this.tableUserType = "User";
+      this.tableTab = this.userTabs[0];
     }
-    else{
-      this.tableUserType = 'User'
-      this.tableTab = this.userTabs[0]
-    }
-    this.tableDepartment = 'All'
+    this.tableDepartment = "All";
     this.tableSystemCategory = this.system_category;
     await this.getUsers();
   }
@@ -134,22 +131,19 @@ export class UserListComponent implements OnInit {
     const accessToken = await this.locstorage.getData("accessToken");
     const creator_id = await this.locstorage.getData("id");
     var tabs: string[] = [];
-    console.log(addUserData)
     if (addUserData.sales_admin) tabs.push("Sales Admin");
     if (addUserData.production_admin) tabs.push("Production Admin");
     if (addUserData.delivery_admin) tabs.push("Delivery Admin");
     if (addUserData.order_analytics) tabs.push("Order Analytics");
 
-    const checkTab:any = await this.locstorage.getData("tabs");
+    const checkTab: any = await this.locstorage.getData("tabs");
     if (checkTab.length == 1) {
-      tabs.push(checkTab[0])
+      tabs.push(checkTab[0]);
     }
 
-    if(tabs.length< 1)
-    {
-      this.util.openSnackBar("Assign at least 1 tab to the user", "OK")
-    }
-    else{
+    if (tabs.length < 1) {
+      this.util.openSnackBar("Assign at least 1 tab to the user", "OK");
+    } else {
       const options = {
         headers: {
           authorization: `Bearer ${accessToken}`,
@@ -172,13 +166,13 @@ export class UserListComponent implements OnInit {
       const loadingPromise = new Promise((resolve) =>
         setTimeout(resolve, environment.loadingTime)
       );
-  
+
       return await Promise.all([response, loadingPromise]).then(
         ([response]: any) => {
           this.isLoading = false;
-  
+
           this.util.openSnackBar(response.message, "OK");
-  
+
           this.getUsers();
         },
         (error) => {
@@ -195,7 +189,6 @@ export class UserListComponent implements OnInit {
     if (system_category == "all-category") {
       system_category = null;
     }
-    console.log(this.userTabs)
     const accessToken = await this.locstorage.getData("accessToken");
     const options = {
       headers: {
@@ -209,7 +202,7 @@ export class UserListComponent implements OnInit {
         .set("tabs", this.userTabs.join(","))
         .set("user_type", this.tableUserType)
         .set("department", this.tableDepartment)
-        .set("tableTab", this.tableTab)
+        .set("tableTab", this.tableTab),
     };
 
     const response = this.http
@@ -223,7 +216,6 @@ export class UserListComponent implements OnInit {
       ([response]: any) => {
         this.isLoading = false;
         this.dataSource = response.data;
-        console.log("user data",response);
         this.dataMax = response.totalItems;
       },
       (error) => {
@@ -242,17 +234,13 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
   navigateSettings() {
-    if(this.view == 'felicity')
-    {
-      this.router.navigate(["settings"]);  
+    if (this.view == "felicity") {
+      this.router.navigate(["settings"]);
+    } else {
+      this.router.navigate(["suleat-settings"]);
     }
-    else{
-      this.router.navigate(["suleat-settings"]);  
-    }
-    
   }
   viewAccount(account_id: number) {
-    console.log("Account ID", account_id);
     this.router.navigate([`view-user`], {
       queryParams: {
         view: this.view,
@@ -279,7 +267,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
   selector: "adduser-dialog",
-  templateUrl: "../../components/dialogs/adduser-dialog.html",
+  templateUrl: "../../components/dialogs/UserAccount/add-user-dialog.html",
   standalone: true,
   imports: [
     MatDialogModule,

@@ -44,6 +44,7 @@ export class ViewUserComponent implements OnInit {
   page: string = "View User";
   view: string = "";
   account_id: number = 0;
+  userCategory:any;
   serverAPI: string = environment.serverAPI;
   user_data!: any;
   displayedColumns: string[] = ["created_at", "description"];
@@ -70,6 +71,7 @@ export class ViewUserComponent implements OnInit {
 
     await this.getUser();
     await this.getLoggings();
+    this.userCategory = await this.locstorage.getData("user_category")
   }
 
   navigateUsers() {
@@ -99,12 +101,10 @@ export class ViewUserComponent implements OnInit {
         this.isLoading = false;
         if (response[0]) {
           this.user_data = response[0];
-          console.log(this.user_data);
         }
       },
       (error) => {
         this.isLoading = false;
-        console.log(error);
       }
     );
   }
@@ -133,7 +133,6 @@ export class ViewUserComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
-        console.log(error);
         this.isLoading = false;
       }
     );
@@ -173,7 +172,6 @@ export class ViewUserComponent implements OnInit {
       department: data.department,
       active: data.active,
     };
-    console.log(formData);
     const response = this.http
       .put(
         `${environment.serverAPI}/api/accounts/${this.account_id}`,
@@ -188,7 +186,6 @@ export class ViewUserComponent implements OnInit {
 
     return await Promise.all([response, loadingPromise]).then(
       async ([response]: any) => {
-        console.log(response);
         if (response.message) {
           this.util.openSnackBar(response.message, "OK");
           await this.util.createLogging(
@@ -197,24 +194,22 @@ export class ViewUserComponent implements OnInit {
           this.getUser();
         }
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 
   openResetPasswordDialog(): void {
     const dialogRef = this.dialog.open(ResetPasswordDialog);
 
-    dialogRef.afterClosed().subscribe(async(result) => {
+    dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
-        await this.resetPassword()
+        await this.resetPassword();
       }
     });
   }
 
   async resetPassword() {
-    this.isLoading = true
+    this.isLoading = true;
     const accessToken = await this.locstorage.getData("accessToken");
     const creator_id = await this.locstorage.getData("id");
 
@@ -235,70 +230,74 @@ export class ViewUserComponent implements OnInit {
       )
       .toPromise();
 
-    const loadingPromise = new Promise((resolve)  => setTimeout(resolve, environment.loadingTime))
+    const loadingPromise = new Promise((resolve) =>
+      setTimeout(resolve, environment.loadingTime)
+    );
 
-    return await Promise.all([response,loadingPromise])
-        .then(
-          ([response]:any)  =>{
-            this.isLoading = false
-            this.util.openSnackBar(response.message, "OK")
-          },
-          (error) => {
-            this.isLoading = false
-            console.log(error)
-            this.util.openSnackBar(error.error.message, "OK")
-          }
-        )
+    return await Promise.all([response, loadingPromise]).then(
+      ([response]: any) => {
+        this.isLoading = false;
+        this.util.openSnackBar(response.message, "OK");
+      },
+      (error) => {
+        this.isLoading = false;
+        this.util.openSnackBar(error.error.message, "OK");
+      }
+    );
   }
   openDeleteAccountDialog(): void {
     const dialogRef = this.dialog.open(DeleteAccountDialog);
 
-    dialogRef.afterClosed().subscribe(async(result) => {
+    dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
-        await this.deleteAccount()
+        await this.deleteAccount();
       }
     });
   }
 
-  async deleteAccount(){
-    this.isLoading = true
-    const accessToken = await this.locstorage.getData("accessToken")
-    const creator_id = await this.locstorage.getData("id")
+  async deleteAccount() {
+    this.isLoading = true;
+    const accessToken = await this.locstorage.getData("accessToken");
+    const creator_id = await this.locstorage.getData("id");
 
     const options = {
-      headers:{
-        authorization:`Bearer ${accessToken}`
-      }
-    }
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    };
 
     const data = {
-      active:false,
-    }
-    const response = this.http.put(`${this.serverAPI}/api/accounts/${this.account_id}`, data, options).toPromise()
-    const loadingPromise = new Promise((resolve)  =>  setTimeout(resolve,environment.loadingTime))
+      active: false,
+    };
+    const response = this.http
+      .put(`${this.serverAPI}/api/accounts/${this.account_id}`, data, options)
+      .toPromise();
+    const loadingPromise = new Promise((resolve) =>
+      setTimeout(resolve, environment.loadingTime)
+    );
 
-    return await Promise.all([response,loadingPromise])
-      .then(
-        ([response]:any) => {
-          this.isLoading = false
-          if(response.message){
-            this.util.openSnackBar("Account deleted successfully", "OK")
-            this.util.createLogging(`Deleted an account with an email ${this.user_data.email}`)
-            this.navigateUsers()
-          }
-        },
-        (error) =>{
-          this.isLoading = false
-          console.log(error)
-          this.util.openSnackBar(error.error.message, "OK")
+    return await Promise.all([response, loadingPromise]).then(
+      ([response]: any) => {
+        this.isLoading = false;
+        if (response.message) {
+          this.util.openSnackBar("Account deleted successfully", "OK");
+          this.util.createLogging(
+            `Deleted an account with an email ${this.user_data.email}`
+          );
+          this.navigateUsers();
         }
-      )
+      },
+      (error) => {
+        this.isLoading = false;
+        this.util.openSnackBar(error.error.message, "OK");
+      }
+    );
   }
 }
 
 @Component({
   selector: "edituser-dialog",
-  templateUrl: "../../components/dialogs/edituser-dialog.html",
+  templateUrl: "../../components/dialogs/UserAccount/edit-user-dialog.html",
   standalone: true,
   imports: [
     MatDialogModule,
@@ -344,7 +343,7 @@ export class EditUserDialog implements OnInit {
     public dialogRef: MatDialogRef<EditUserDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private locstorage: LocalstorageService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
   ) {}
 
   async ngOnInit() {
@@ -404,7 +403,8 @@ export class EditUserDialog implements OnInit {
 
 @Component({
   selector: "resetpassword-dialog",
-  templateUrl: "../../components/dialogs/resetpassword-dialog.html",
+  templateUrl:
+    "../../components/dialogs/UserAccount/confirm-reset-password-dialog.html",
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })
@@ -418,7 +418,8 @@ export class ResetPasswordDialog {
 
 @Component({
   selector: "deleteaccount-dialog",
-  templateUrl: "../../components/dialogs/deleteaccount-dialog.html",
+  templateUrl:
+    "../../components/dialogs/UserAccount/delete-account-dialog.html",
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })

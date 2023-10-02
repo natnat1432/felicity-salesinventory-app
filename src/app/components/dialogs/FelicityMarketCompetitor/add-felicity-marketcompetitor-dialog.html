@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Add Market Competitor</h1>
+<div class="add-felicity-marketcompetitor">
+  <div class="input">
+    <form [formGroup]="addFelicityMarketCompetitor">
+      <div mat-dialog-content>
+        <mat-form-field>
+          <mat-label>Market Name</mat-label>
+          <input type="text" matInput placeholder="" formControlName="market_name">
+        </mat-form-field> <br>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="addFelicityMarketCompetitor"
+          [disabled]="!addFelicityMarketCompetitor.valid">Add</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
